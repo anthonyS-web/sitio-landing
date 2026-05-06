@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitio — Votre site en 2 minutes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0f0e0c;
+    --white: #faf9f6;
+    --cream: #f3f0e8;
+    --accent: #2a6a4a;
+    --accent-light: #d4ead9;
+    --muted: #6b6860;
+    --border: rgba(15,14,12,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--black);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black) !important;
+    color: var(--white) !important;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, #d4ead9 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.3px;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--black);
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-secondary:hover { border-color: var(--black); color: var(--black); }
+
+  .social-proof {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .avatars { display: flex; }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    margin-left: -8px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .avatar:first-child { margin-left: 0; }
+
+  .mockup-strip {
+    width: 100%;
+    max-width: 900px;
+    margin: 4rem auto 0;
+    background: var(--cream);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .site-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .site-card-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+  }
+
+  .site-card:nth-child(1) .site-card-header { background: #e8f4ea; color: #1a5c2e; }
+  .site-card:nth-child(2) .site-card-header { background: #f0e8e0; color: #6b3a1f; }
+  .site-card:nth-child(3) .site-card-header { background: #e8eaf4; color: #1a2b6b; }
+
+  .site-card-body { padding: 10px 12px 12px; }
+
+  .site-card-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .site-card-name { font-size: 13px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+
+  .site-card-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--black);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 500px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .step {
+    padding: 2rem 1.75rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .step:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step h3 { font-size: 16px; font-weight: 500; margin-bottom: 0.5rem; color: var(--black); }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .feature {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--white);
+  }
+
+  .feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    font-size: 18px;
+  }
+
+  .feature h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
+  .feature p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .pricing-section {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    color: var(--black);
+    letter-spacing: -2px;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .price span { font-size: 1.5rem; color: var(--muted); letter-spacing: 0; }
+  .price-desc { font-size: 14px; color: var(--muted); margin-bottom: 2rem; }
+
+  .perks {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 280px;
+    margin: 0 auto 2.5rem;
+    text-align: left;
+  }
+
+  .perk {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--black);
+  }
+
+  .perk::before {
+    content: '✓';
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .email-form {
+    display: flex;
+    gap: 8px;
+    max-width: 440px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .email-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 13px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .email-input:focus { border-color: var(--accent); }
+  .email-input::placeholder { color: var(--muted); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .success-msg {
+    display: none;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .steps { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .mockup-strip { grid-template-columns: 1fr; }
+    h1 { font-size: 2.4rem; }
+    nav { padding: 0 1rem; }
+    nav a:not(.nav-cta):not(.logo) { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .pricing-section { padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Sitio<span>.</span></div>
+  <div style="display:flex;gap:1.5rem;align-items:center;">
+    <a href="#comment">Comment ça marche</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#tarifs" class="nav-cta">Essayer gratuitement</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">Nouveau · Votre site en 2 minutes</div>
+  <h1>Votre site web pro,<br><em>sans effort</em>.</h1>
+  <p class="hero-sub">Vous êtes artisan, freelance, ou indépendant ? Sitio crée votre site professionnel automatiquement. Répondez à quelques questions, on s'occupe du reste.</p>
+  <div class="cta-group">
+    <button class="btn-primary" onclick="document.getElementById('email-hero').focus()">Créer mon site gratuitement</button>
+    <button class="btn-secondary">Voir des exemples</button>
+  </div>
+  <div class="social-proof">
+    <div class="avatars">
+      <div class="avatar">M</div>
+      <div class="avatar">K</div>
+      <div class="avatar">R</div>
+      <div class="avatar">J</div>
+    </div>
+    <span>Rejoignez 240+ artisans déjà en ligne</span>
+  </div>
+
+  <div class="mockup-strip">
+    <div class="site-card">
+      <div class="site-card-header">Marc Dupont</div>
+      <div class="site-card-body">
+        <div class="site-card-meta">marc-plombier.sitio.fr</div>
+        <div class="site-card-name">Plomberie Dupont</div>
+        <span class="site-card-tag">Plombier · Paris 11e</span>
+      </div>
+    </div>
+    <div class="site-card">
+      <div class="site-card-header">Fatima B.</div>
+      <div class="site-card-body">
+        <div class="site-card-meta">fatima-couture.sitio.fr</div>
+        <div class="site-card-name">Atelier Benali</div>
+        <span class="site-card-tag">Couturière · Lyon</span>
+      </div>
+    </div>
+    <div class="site-card">
+      <div class="site-card-header">Lucas M.</div>
+      <div class="site-card-body">
+        <div class="site-card-meta">lucas-design.sitio.fr</div>
+        <div class="site-card-name">Lucas Studio</div>
+        <span class="site-card-tag">Graphiste · Remote</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="comment">
+  <div class="section-label">Comment ça marche</div>
+  <h2>Simple comme bonjour.</h2>
+  <p class="section-sub">Pas besoin de savoir coder, ni de payer un développeur. Sitio fait tout pour vous en quelques minutes.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Parlez-nous de vous</h3>
+      <p>Votre nom, votre métier, votre ville. C'est tout ce dont on a besoin pour commencer.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>On génère votre site</h3>
+      <p>Notre IA crée un site professionnel adapté à votre activité en moins de 2 minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Vous êtes en ligne</h3>
+      <p>Votre site est publié avec votre propre adresse. Vos clients peuvent vous trouver.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Fonctionnalités</div>
+  <h2>Tout ce qu'il vous faut.</h2>
+  <p class="section-sub">Un site complet qui donne envie à vos clients de vous contacter.</p>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🎨</div>
+      <h3>Design professionnel</h3>
+      <p>Des modèles modernes adaptés à votre métier. Plombier, électricien, designer — chaque site est unique.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📍</div>
+      <h3>Référencement local</h3>
+      <p>Votre site est optimisé pour apparaître sur Google quand vos clients vous cherchent dans votre ville.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📱</div>
+      <h3>Mobile parfait</h3>
+      <p>85% de vos clients visitent depuis un téléphone. Votre site est impeccable sur tous les écrans.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✏️</div>
+      <h3>Modifiable à tout moment</h3>
+      <p>Changez vos horaires, ajoutez des photos, mettez à jour vos services — en quelques clics.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tarifs" style="max-width:700px;">
+  <div class="pricing-section">
+    <div class="section-label" style="text-align:center;">Tarifs</div>
+    <h2>Un prix, tout inclus.</h2>
+    <div class="price"><span>€</span>29<span>/mois</span></div>
+    <p class="price-desc">14 jours d'essai gratuit · Sans engagement · Annulable à tout moment</p>
+    <div class="perks">
+      <div class="perk">Site web professionnel généré par IA</div>
+      <div class="perk">Sous-domaine sitio.fr inclus</div>
+      <div class="perk">Optimisé pour Google</div>
+      <div class="perk">Formulaire de contact intégré</div>
+      <div class="perk">Modifications illimitées</div>
+      <div class="perk">Support par email</div>
+    </div>
+    <div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Entrez votre email pour commencer gratuitement</p>
+      <div class="email-form">
+        <input id="email-hero" class="email-input" type="email" placeholder="votre@email.fr" />
+        <button class="btn-primary" onclick="handleSignup()">Commencer →</button>
+      </div>
+      <div class="success-msg" id="success-msg">🎉 Parfait ! On vous contacte très vite.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Sitio · Fait avec soin pour les artisans et indépendants 🇫🇷</p>
+</footer>
+
+<script>
+function handleSignup() {
+  const email = document.getElementById('email-hero').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('email-hero').style.borderColor = '#e24b4a';
+    setTimeout(() => document.getElementById('email-hero').style.borderColor = '', 1500);
+    return;
+  }
+  document.querySelector('.email-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
